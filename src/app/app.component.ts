@@ -8,15 +8,27 @@ import { POKEMONS } from "./mock-pokemon-list";
 })
 export class AppComponent implements OnInit {
     title = "pkmnAngular";
-
     pkmnList: Pokemon[] = POKEMONS;
+
+    pkmnSelected : Pokemon | undefined;
 
     ngOnInit(): void {
         console.table(this.pkmnList);
-        this.selectPkmn(this.pkmnList[0]);
+        // this.selectPkmn(this.pkmnList[0]);
     }
 
-    selectPkmn(pokemon: Pokemon) {
-        console.log(`Vous avez cliqué sur le pokémon ${pokemon.name}`);
+    selectPkmn(pkmnId : string) {
+        const pokemon : Pokemon|undefined = this.pkmnList.find(pkmn => pkmn.id == +pkmnId);
+
+        if (pokemon) {
+            console.log("vous avez demandé : " + pokemon.name);
+            this.pkmnSelected = pokemon;
+        }
+        else {
+            console.log("pokemon introuvable");
+            this.pkmnSelected = pokemon;
+            
+        }
+
     }
 }
