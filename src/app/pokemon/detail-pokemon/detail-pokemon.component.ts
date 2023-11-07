@@ -5,24 +5,21 @@ import { PokemonService } from "../pokemon.service";
 @Component({
     selector: "app-detail-pokemon",
     templateUrl: "./detail-pokemon.component.html",
-    styles: [`
-    .card-action a {
-      cursor: pointer
-      }
-    `],
+    styles: [
+        `
+            .card-action a {
+                cursor: pointer;
+            }
+        `,
+    ],
 })
 export class DetailPokemonComponent implements OnInit {
     pokemonList: Pokemon[];
     pokemon: Pokemon | undefined;
 
-    constructor(
-        private route: ActivatedRoute,
-        private router: Router,
-        private pokemonService: PokemonService
-         ) {}
+    constructor(private route: ActivatedRoute, private router: Router, private pokemonService: PokemonService) {}
 
     ngOnInit() {
-        
         const pokemonId: string | null = this.route.snapshot.paramMap.get("id");
 
         if (pokemonId) {
@@ -30,8 +27,11 @@ export class DetailPokemonComponent implements OnInit {
         }
     }
 
-   
     goBack() {
         this.router.navigate(["/pokemons"]);
+    }
+
+    goToEditPokemon(pokemon: Pokemon) {
+        this.router.navigate(["/edit/pokemon", pokemon.id]);
     }
 }
