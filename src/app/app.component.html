@@ -1,28 +1,32 @@
 <h1>Liste de pokemons</h1>
 
-<input #input (keyup.enter)="selectPkmn(input.value)"  type="number" />
+<input #input (keyup.enter)="selectPkmn(input.value)" type="number" />
 <button (click)="selectPkmn(input.value)">GO</button>
 
 <!-- conditionner un affichage -->
-<p *ngIf="pkmnSelected">Vous avez sélectionné le pokemon: {{ pkmnSelected?.name }}</p>
+<!-- <p *ngIf="pkmnSelected">Vous avez sélectionné le pokemon: {{ pkmnSelected?.name }}</p> -->
 <p *ngIf="!pkmnSelected">pokemon inconnu</p>
 
 <!-- boucler -->
-<div *ngFor="let pokemon of pkmnList" class="row">
-    <div class="row">
-        <div class="col s12 m6">
-          <div class="card">
+
+<div class="row">
+    <div *ngFor="let pokemon of pkmnList" class="col s6 m4">
+        <div class="card horizontal" pkmnBorderCard borderColor="red">
             <div class="card-image">
-              <img [src]="pokemon.picture">
-              <span class="card-title">{{pokemon.name}}</span>
-              <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+                <img [src]="pokemon.picture" [alt]="pokemon.name" />
             </div>
-            <div class="card-content">
-              <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
+            <div class="card-stacked">
+                <div class="card-content">
+                    <p>{{ pokemon.name }}</p>
+                    <p>
+                        <!-- // utilisation d'un pipe pour formater du texte de la gauche vers la droite -->
+                        <small>{{ pokemon.created | date : "dd / MMM / yy" | uppercase }}</small>
+                    </p>
+
+                    <span *ngFor="let type of pokemon.types" class="{{ type | pokemonTypeColor }}">{{ type }}</span>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
-    
+    </div>
 </div>
-   <!-- 2.18 -->
+<!-- 2.18 -->

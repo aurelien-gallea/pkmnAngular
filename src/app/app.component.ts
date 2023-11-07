@@ -26,8 +26,7 @@ export class AppComponent implements OnInit {
         }
         else {
             console.log("pokemon introuvable");
-            this.pkmnSelected = pokemon;
-            
+            this.pkmnSelected = pokemon; 
         }
 
     }
