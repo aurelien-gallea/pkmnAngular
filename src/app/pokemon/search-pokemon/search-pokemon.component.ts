@@ -20,6 +20,7 @@ export class SearchPokemonComponent implements OnInit{
     private pokemonService: PokemonService) {}
   
   ngOnInit(): void {
+    
     this.pokemons$ = this.searchTerms.pipe(
       // {..."a"."ab"...."abz"."ab"...."abc"....}
       debounceTime(300),
@@ -41,4 +42,3 @@ export class SearchPokemonComponent implements OnInit{
     this.router.navigate(link);
   }
 }
-// 7.54
