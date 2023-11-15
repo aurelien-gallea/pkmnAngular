@@ -12,4 +12,3 @@ export class InMemoryDataService implements InMemoryDbService {
     return {pokemons};
   }
 }
-//8.06
